@@ -1,0 +1,61 @@
+﻿<Window x:Class="Assets.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Assets"
+        mc:Ignorable="d"
+        Title="Assets" Height="Auto" Width="Auto">
+    <Grid>
+        <TabControl>
+            <TabItem Header="Account">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <GroupBox Margin="5" Header="Account Details" Grid.Row="0">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Grid.Row="0" Grid.Column="0" Margin="5" Text="Account Number :" />
+                            <TextBox Grid.Row="0" Grid.Column="1" Margin="5" Text="{Binding AccountNumber}"/>
+
+                            <TextBlock Grid.Row="1" Grid.Column="0" Margin="5" Text="Bank :" />
+                            <TextBox Grid.Row="0" Grid.Column="1" Margin="5" Text="{Binding AccountNumber}"/>
+
+                            <TextBlock Grid.Row="2" Grid.Column="0" Margin="5" Text="Branch :" />
+                            <TextBox Grid.Row="0" Grid.Column="1" Margin="5" Text="{Binding AccountNumber}"/>
+
+                            <TextBlock Grid.Row="3" Grid.Column="0" Margin="5" Text="Amount :" />
+                            <TextBox Grid.Row="0" Grid.Column="1" Margin="5" Text="{Binding AccountNumber}"/>
+
+                            <TextBlock Grid.Row="4" Grid.Column="0" Margin="5" Text="IFSC Code :" />
+                            <TextBox Grid.Row="0" Grid.Column="1" Margin="5" Text="{Binding AccountNumber}"/>
+
+
+                        </Grid>
+
+                    </GroupBox>
+
+                    <GroupBox Margin="5" Header="Account List" Grid.Row="1">
+                        <DataGrid Width="Auto" Height="150" AutoGenerateColumns="True" ItemsSource="{Binding AccountList}" SelectedItem="{Binding AccountListSelectedItem}" />
+                    </GroupBox>
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>

@@ -5,6 +5,10 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "3TierArchitecture", "3TierArchitecture\3TierArchitecture.csproj", "{E34FD41E-8750-4CEC-BBAA-3327922910CF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assets", "Assets\Assets.csproj", "{02A2506B-5E5D-46E1-BE5C-5CDAF963D99B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ViewmodelBase", "ViewmodelBase\ViewmodelBase.csproj", "{3093FE54-3C82-4746-82AF-22F98683FF2C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{E34FD41E-8750-4CEC-BBAA-3327922910CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E34FD41E-8750-4CEC-BBAA-3327922910CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E34FD41E-8750-4CEC-BBAA-3327922910CF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{02A2506B-5E5D-46E1-BE5C-5CDAF963D99B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{02A2506B-5E5D-46E1-BE5C-5CDAF963D99B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{02A2506B-5E5D-46E1-BE5C-5CDAF963D99B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{02A2506B-5E5D-46E1-BE5C-5CDAF963D99B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3093FE54-3C82-4746-82AF-22F98683FF2C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3093FE54-3C82-4746-82AF-22F98683FF2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3093FE54-3C82-4746-82AF-22F98683FF2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3093FE54-3C82-4746-82AF-22F98683FF2C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

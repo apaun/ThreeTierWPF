@@ -1,0 +1,30 @@
+﻿CREATE DATABASE Assets;
+GO
+
+USE Assets
+GO
+
+CREATE TABLE Account (
+	Number nvarchar(100) NOT NULL UNIQUE,
+	Bank nvarchar(100) NOT NULL,
+	Branch nvarchar(100),
+	Amount INT NOT NULL,
+	IFSCCODE nvarchar(100)
+);
+GO
+
+USE Assets
+GO
+
+IF OBJECT_ID( 'uspGetAllAccounts', 'P') IS NOT NULL
+	DROP PROCEDURE uspGetAllAccounts
+GO
+
+CREATE PROCEDURE uspGetAllAccounts
+AS
+BEGIN
+	SELECT * FROM dbo.Account
+END
+
+
+
