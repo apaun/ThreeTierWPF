@@ -2,7 +2,7 @@
 using System.Diagnostics;
 using System.Windows.Input;
 
-namespace _3TierArchitecture
+namespace _3TierArchitecture.Viewmodel
 {
 	/// <summary>
 	/// RelayCommand without Command Parameter

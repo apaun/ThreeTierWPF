@@ -1,18 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using _3TierArchitecture.Model;
 
-namespace _3TierArchitecture
+namespace _3TierArchitecture.DAL
 {
 	public class Dal
 	{
-
-		private const string ConnectionString = @"Data Source=localhost\HISTORIAN; Initial Catalog = TestDb; Integrated Security = True;";
+		private static readonly string ConnectionString;
 		private const string GetAllEmployees = @"sp_GetAllEmployees";
 		private const string AddEmployeeData = @"sp_AddEmployee";
 		private const string DeleteEmployeeData = @"sp_DeleteEmployee";
 		private const string UpdateEmployeeData = @"sp_UpdateEmployee";
+
+        static Dal()
+        {
+            ConnectionString = $"Data Source={ConfigurationManager.AppSettings["DatabaseSource"]}; Initial Catalog = {ConfigurationManager.AppSettings["DatabaseName"]}; Integrated Security = True;";
+        }
 
 		public static IEnumerable<Employee> GetEmployees()
 		{
@@ -28,7 +34,7 @@ namespace _3TierArchitecture
 				{
 					while (rdr.Read())
 					{
-						yield return new Employee(int.Parse(rdr["EmployeeId"].ToString()), rdr["EmployeeFirstName"].ToString(), rdr["EmployeeLastName"].ToString());
+						yield return new Employee(int.Parse(rdr["Id"].ToString()), rdr["FirstName"].ToString(), rdr["LastName"].ToString());
 					}
 				}
 			}
@@ -40,9 +46,9 @@ namespace _3TierArchitecture
 			{
 				connection.Open();
 				var command = new SqlCommand(AddEmployeeData, connection) { CommandType = CommandType.StoredProcedure };
-				command.Parameters.Add(new SqlParameter("@EmployeeId", emp.EmployeeId));
-				command.Parameters.Add(new SqlParameter("@EmployeeFirstName", emp.EmployeeFirstName));
-				command.Parameters.Add(new SqlParameter("@EmployeeLastName", emp.EmployeeLastName));
+				command.Parameters.Add(new SqlParameter("@id", emp.EmployeeId));
+				command.Parameters.Add(new SqlParameter("@firstName", emp.EmployeeFirstName));
+				command.Parameters.Add(new SqlParameter("@lastName", emp.EmployeeLastName));
 				command.ExecuteNonQuery();
 			}
 		}
@@ -53,7 +59,7 @@ namespace _3TierArchitecture
 			{
 				connection.Open();
 				var command = new SqlCommand(DeleteEmployeeData, connection) { CommandType = CommandType.StoredProcedure };
-				command.Parameters.Add(new SqlParameter("@EmployeeId", emp.EmployeeId));
+				command.Parameters.Add(new SqlParameter("@id", emp.EmployeeId));
 				command.ExecuteNonQuery();
 			}
 		}
@@ -64,9 +70,9 @@ namespace _3TierArchitecture
 			{
 				conn.Open();
 				var command = new SqlCommand(UpdateEmployeeData, conn) {CommandType = CommandType.StoredProcedure};
-				command.Parameters.Add(new SqlParameter("@EmployeeId", emp.EmployeeId));
-				command.Parameters.Add(new SqlParameter("@EmployeeFirstName", emp.EmployeeFirstName));
-				command.Parameters.Add(new SqlParameter("@EmployeeLastName", emp.EmployeeLastName));
+				command.Parameters.Add(new SqlParameter("@id", emp.EmployeeId));
+				command.Parameters.Add(new SqlParameter("@firstName", emp.EmployeeFirstName));
+				command.Parameters.Add(new SqlParameter("@lastName", emp.EmployeeLastName));
 				command.ExecuteNonQuery();
 			}
 		}

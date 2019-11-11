@@ -1,0 +1,99 @@
+﻿Use TestDb
+GO
+
+/* DROP table Employee */
+
+CREATE TABLE Employee (
+	Id int NOT NULL UNIQUE,
+	FirstName nvarchar(100),
+	LastName nvarchar(100),
+);
+GO
+
+/*ALTER TABLE dbo.Employee
+ALTER COLUMN EmployeeID INT NOT NULL;
+GO*/
+
+USE [TestDb]
+GO
+
+IF EXISTS ( SELECT * 
+            FROM   sysobjects 
+            WHERE  id = object_id(N'[dbo].[sp_AddEmployee]') 
+                   and OBJECTPROPERTY(id, N'IsProcedure') = 1 )
+BEGIN
+    DROP PROCEDURE [dbo].sp_AddEmployee
+END
+GO
+
+CREATE PROCEDURE sp_AddEmployee 
+(
+	@id INT,
+	@firstName nvarchar(100),
+	@lastName nvarchar(100)
+)
+AS
+INSERT INTO [dbo].[Employee]
+           ([Id]
+           ,[FirstName]
+           ,[LastName])
+     VALUES
+           (@id,
+            @firstName,
+			@lastName)       
+GO
+
+IF EXISTS ( SELECT * 
+            FROM   sysobjects 
+            WHERE  id = object_id(N'[dbo].[sp_GetAllEmployees]') 
+                   and OBJECTPROPERTY(id, N'IsProcedure') = 1 )
+BEGIN
+    DROP PROCEDURE [dbo].sp_GetAllEmployees
+END
+GO
+
+CREATE PROCEDURE sp_GetAllEmployees
+AS
+	SELECT * from dbo.Employee
+GO
+
+IF EXISTS ( SELECT * 
+            FROM   sysobjects 
+            WHERE  id = object_id(N'[dbo].[sp_UpdateEmployee]') 
+                   and OBJECTPROPERTY(id, N'IsProcedure') = 1 )
+BEGIN
+    DROP PROCEDURE [dbo].sp_UpdateEmployee
+END
+GO
+
+
+CREATE PROCEDURE sp_UpdateEmployee
+(
+	@id INT,
+	@firstName nvarchar(100),
+	@lastName nvarchar(100)
+)
+AS
+BEGIN
+	UPDATE dbo.Employee
+	SET FirstName = @firstName, LastName = @lastName
+	WHERE Id = @id
+END
+GO	
+
+IF OBJECT_ID ( 'TestDb.sp_DeleteEmployee', 'P' ) IS NOT NULL   
+    DROP PROCEDURE sp_DeleteEmployee;  
+GO 
+
+CREATE PROCEDURE sp_DeleteEmployee
+(
+	@id INT
+)
+AS
+BEGIN
+	DELETE FROM dbo.Employee where Id = @id
+END
+
+
+
+

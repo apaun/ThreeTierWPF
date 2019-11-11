@@ -4,6 +4,9 @@ using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Input;
 using _3TierArchitecture.Annotations;
+using _3TierArchitecture.DAL;
+using _3TierArchitecture.Model;
+using _3TierArchitecture.Viewmodel;
 
 namespace _3TierArchitecture
 {
