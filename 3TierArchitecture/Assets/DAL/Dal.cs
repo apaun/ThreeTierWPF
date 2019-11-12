@@ -11,7 +11,7 @@ namespace Assets.DAL
     {
         private static readonly string ConnectionString;
         private const string GetAllAccounts = @"uspGetAllAccounts";
-        private const string AddNewAccount = @"uspAddAccout";
+        private const string AddNewAccount = @"uspAddAccount";
         private const string DeleteAccount = @"uspDeleteAccount";
         private const string UpdateAccountDetails = @"uspUpdateAccountDetails";
 
@@ -33,7 +33,7 @@ namespace Assets.DAL
                 {
                     while (rdr.Read())
                     {
-                        yield return new Account(rdr["Number"].ToString(), rdr["Bank"].ToString(), rdr["Branch"].ToString(), rdr["Amount"].ToString(), rdr["IfscCode"].ToString());
+                        yield return new Account(rdr["Number"].ToString(), rdr["Bank"].ToString(), rdr["Branch"].ToString(), float.Parse(rdr["Amount"].ToString()), rdr["IfscCode"].ToString(), (AccountTypeEnum)Enum.Parse(typeof(AccountTypeEnum), rdr["ACCOUNTTYPE"].ToString()));
                     }
                 }
             }
@@ -50,6 +50,7 @@ namespace Assets.DAL
                 command.Parameters.Add(new SqlParameter("@branch", account.Branch));
                 command.Parameters.Add(new SqlParameter("@amount", account.Amount));
                 command.Parameters.Add(new SqlParameter("@code", account.IfscCode));
+                command.Parameters.Add(new SqlParameter("@type", account.TypeEnum.ToString()));
                 command.ExecuteNonQuery();
             }
         }
@@ -76,6 +77,7 @@ namespace Assets.DAL
                 command.Parameters.Add(new SqlParameter("@branch", account.Branch));
                 command.Parameters.Add(new SqlParameter("@amount", account.Amount));
                 command.Parameters.Add(new SqlParameter("@code", account.IfscCode));
+                command.Parameters.Add(new SqlParameter("@type", account.TypeEnum.ToString()));
                 command.ExecuteNonQuery();
             }
         }

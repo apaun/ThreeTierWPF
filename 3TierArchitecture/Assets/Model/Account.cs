@@ -14,17 +14,28 @@ namespace Assets.Model
 
         public string Branch { get; set; }
 
-        public int Amount { get; set; }
+        public float Amount { get; set; }
 
         public string IfscCode { get; set; }
 
-        public Account(string number, string bank, string branch, string amount, string ifscCode)
+        public AccountTypeEnum TypeEnum { get; set; }
+
+        public Account(string number, string bank, string branch, float amount, string ifscCode, AccountTypeEnum typeEnum)
         {
             AccountNumber = number;
             Bank = bank;
             Branch = branch;
-            Amount = int.Parse(amount);
+            Amount = amount;
             IfscCode = ifscCode;
+            TypeEnum = typeEnum;
         }
+    }
+
+    public enum AccountTypeEnum
+    {
+        SAVINGS,
+        PPF,
+        RD,
+        FD
     }
 }

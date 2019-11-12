@@ -5,15 +5,16 @@ USE Assets
 GO
 
 CREATE TABLE Account (
-	Number nvarchar(100) NOT NULL UNIQUE,
-	Bank nvarchar(100) NOT NULL,
-	Branch nvarchar(100),
-	Amount INT NOT NULL,
-	IFSCCODE nvarchar(100)
+	NUMBER nvarchar(100) NOT NULL UNIQUE,
+	BANK nvarchar(100) NOT NULL,
+	BRANCH nvarchar(100),
+	AMOUNT FLOAT NOT NULL,
+	IFSCCODE nvarchar(100),
+	MICRCODE nvarchar(100),
+	MMID nvarchar(100),
+	BANKADDRESS nvarchar(100),
+	ACCOUNTTYPE varchar(10) NOT NULL CHECK (ACCOUNTTYPE IN('SAVINGS', 'PPF', 'FD', 'RD'))
 );
-GO
-
-USE Assets
 GO
 
 IF OBJECT_ID( 'uspGetAllAccounts', 'P') IS NOT NULL
@@ -25,6 +26,72 @@ AS
 BEGIN
 	SELECT * FROM dbo.Account
 END
+GO
+
+
+IF OBJECT_ID( 'uspAddAccount', 'P') IS NOT NULL
+	DROP PROCEDURE uspAddAccount
+GO
+
+CREATE PROCEDURE uspAddAccount
+(
+	@number nvarchar(100),
+	@bank nvarchar(100),
+	@branch nvarchar(100),
+	@amount FLOAT,
+	@code nvarchar(100),
+	@type nvarchar(10)
+)
+AS
+BEGIN
+	INSERT INTO [dbo].[Account]
+           ([Number]
+           ,[Bank]
+           ,[Branch]
+           ,[Amount]
+           ,[IFSCCODE]
+		   ,[ACCOUNTTYPE])
+     VALUES
+           (@number, @bank, @branch, @amount, @code, @type)
+END
+GO
+
+IF OBJECT_ID( 'uspDeleteAccount', 'P') IS NOT NULL
+	DROP PROCEDURE uspDeleteAccount
+GO
+
+CREATE PROCEDURE uspDeleteAccount
+(
+	@number nvarchar(100)
+)
+AS
+BEGIN
+	DELETE FROM dbo.Account
+	WHERE Number = @number
+END
+GO
+
+IF OBJECT_ID( 'uspUpdateAccountDetails', 'P') IS NOT NULL
+	DROP PROCEDURE uspUpdateAccountDetails
+GO
+
+CREATE PROCEDURE uspUpdateAccountDetails
+(
+	@number nvarchar(100),
+	@bank nvarchar(100),
+	@branch nvarchar(100),
+	@amount FLOAT,
+	@code nvarchar(100),
+	@type nvarchar(10)
+)
+AS
+BEGIN
+	UPDATE [dbo].Account
+	SET BANK = @bank, BRANCH = @branch, AMOUNT = @amount, IFSCCODE = @code, ACCOUNTTYPE = @type
+	WHERE NUMBER = @number
+END
+GO
+
 
 
 
