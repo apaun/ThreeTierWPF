@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assets", "Assets\Assets.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ViewmodelBase", "ViewmodelBase\ViewmodelBase.csproj", "{3093FE54-3C82-4746-82AF-22F98683FF2C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Comparision", "Comparision\Comparision.csproj", "{0175BC5C-5499-46B6-8851-15C651D27321}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{3093FE54-3C82-4746-82AF-22F98683FF2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3093FE54-3C82-4746-82AF-22F98683FF2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3093FE54-3C82-4746-82AF-22F98683FF2C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0175BC5C-5499-46B6-8851-15C651D27321}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0175BC5C-5499-46B6-8851-15C651D27321}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0175BC5C-5499-46B6-8851-15C651D27321}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0175BC5C-5499-46B6-8851-15C651D27321}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
